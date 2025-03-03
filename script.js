@@ -22,22 +22,21 @@ let  shopItem=[
     }
 ]
 
-let shop=document.getElementById('shop');
-
+let bascket=[];
 let generateShop=()=>{
   return(
      shop.innerHTML=shopItem.map((x)=>{
-        return` <div class="item">
-            <img src="${x.img}" width="220" height="220">
+        return` <div id="product-id-${x.id}" class="item">
+            <img src="${x.img}" width="220" height="220" alt="">
             <div class="details">
                 <h3>${x.name}</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                <p>${x.desc}</p>
                 <div class="price-quantity">
                     <h2>$ ${x.price}</h2>
                     <div class="buttons">
-                        <i class="bi bi-plus"></i>
-                         <div class="quantity">0</div>
-                        <i class="bi bi-dash"></i>
+                        <i class="bi bi-plus" onclick="increment(${x.id})"></i>
+                         <div id=${x.id} class="quantity">0</div>
+                        <i class="bi bi-dash" onclick="decrement(${x.id})"></i>
                     </div>
                 </div>
             </div>
@@ -46,3 +45,118 @@ let generateShop=()=>{
 );
 }
 generateShop();
+
+let increment=(id)=>{
+    let selectedItem=id;
+    let search=bascket.find((x)=>x.id===selectedItem.id);
+    if(search==undefined){
+        bascket.push(
+            {
+                id:selectedItem.id,
+                item:1
+            }
+        )
+    }else{
+        search.item+=1;
+    }
+   update(selectedItem.id);
+}
+
+let decrement=(id)=>{
+    let selectedItem=id;
+    let search=bascket.find((x)=>x.id===selectedItem.id);
+    if(search.item===0){
+        return;
+    }else{
+        search.item-=1;
+    }
+   update(selectedItem.id);
+}
+
+let update=(id)=>{
+    let search=bascket.find((x)=>x.id===id);
+    document.getElementById(`${id}`).innerHTML=search.item;
+    calculation();
+}
+
+let calculation=()=>{
+     let cartAmount=document.getElementById(`cartAmount`);
+
+     cartAmount.innerHTML=bascket.map((x)=>x.item).reduce((x,y)=>x+y,0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
