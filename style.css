@@ -48,6 +48,11 @@ ul{
 }
 .item{
     border: 2px solid;
+    border-radius: 5px;
+}
+.item img{
+    border-bottom: 2px inset;
+    height: 270px;
 }
 .details{
     padding: 10px;
@@ -59,9 +64,33 @@ ul{
 }
 .buttons{
     display: flex;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.bi.bi-plus{
+    color: green;
+}
+.bi.bi-dash{
+   color: red;
 }
 
-
+@media(max-width:1000px){
+    .shop{
+        display: grid;
+        grid-template-columns:repeat(3,223px);
+        gap: 15px;
+        justify-content: center;
+    }
+}
+@media(max-width:600px){
+    .shop{
+        display: grid;
+        grid-template-columns:repeat(2,223px);
+        gap: 15px;
+        justify-content: center;
+    }
+}
 
 
 
