@@ -34,18 +34,19 @@ let bascket=JSON.parse(localStorage.getItem("data"))||[];
 let generateShop=()=>{
   return(
      shop.innerHTML=shopItem.map((x)=>{
-        let search=bascket.find((y)=>y.id===x.id)||[];
-        return` <div id="product-id-${x.id}" class="item">
-            <img src="${x.img}" width="219" height="220" alt="">
+        let {id,name,desc,price,img}=x;
+        let search=bascket.find((y)=>y.id===id)||[];
+        return` <div id="product-id-${id}" class="item">
+            <img src="${img}" width="219" height="220" alt="">
             <div class="details">
-                <h3>${x.name}</h3>
-                <p>${x.desc}</p>
+                <h3>${name}</h3>
+                <p>${desc}</p>
                 <div class="price-quantity">
-                    <h2>$ ${x.price}</h2>
+                    <h2>$ ${price}</h2>
                     <div class="buttons">
-                        <i class="bi bi-plus" onclick="increment(${x.id})"></i>
-                         <div id=${x.id} class="quantity">${search.item===undefined? 0: search.item}</div>
-                        <i class="bi bi-dash" onclick="decrement(${x.id})"></i>
+                        <i class="bi bi-plus" onclick="increment(${id})"></i>
+                         <div id=${id} class="quantity">${search.item === undefined ? 0: search.item}</div>
+                        <i class="bi bi-dash" onclick="decrement(${id})"></i>
                     </div>
                 </div>
             </div>
@@ -68,23 +69,22 @@ let increment=(id)=>{
     }else{
         search.item+=1;
     }
-
-  
-    localStorage.setItem("data",JSON.stringify(bascket));
    update(selectedItem.id);
+   localStorage.setItem("data",JSON.stringify(bascket));
 }
 
 let decrement=(id)=>{
     let selectedItem=id;
     let search=bascket.find((x)=>x.id===selectedItem.id);
-    if(search.item===0){
+    if(search===undefined)return;
+    else if(search.item===0){
         return;
     }else{
         search.item-=1;
     }
-    localStorage.setItem("data",JSON.stringify(bascket));
-
-   update(selectedItem.id);
+    update(selectedItem.id);
+    bascket=bascket.filter((x)=>x.item!==0);
+   localStorage.setItem("data",JSON.stringify(bascket));
 }
 
 let update=(id)=>{
@@ -98,7 +98,7 @@ let calculation=()=>{
      cartAmount.innerHTML=bascket.map((x)=>x.item).reduce((x,y)=>x+y,0);
 }
 
-
+calculation();
 
 
 
