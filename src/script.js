@@ -35,7 +35,7 @@ let generateShop=()=>{
   return(
      shop.innerHTML=shopItem.map((x)=>{
         let {id,name,desc,price,img}=x;
-        let search=bascket.find((y)=>y.id===id)||[];
+        let search=bascket.find((x)=>x.id===id)||[];
         return` <div id="product-id-${id}" class="item">
             <img src="${img}" width="219" height="220" alt="">
             <div class="details">
@@ -55,7 +55,6 @@ let generateShop=()=>{
 );
 }
 generateShop();
-
 let increment=(id)=>{
     let selectedItem=id;
     let search=bascket.find((x)=>x.id===selectedItem.id);
@@ -72,7 +71,6 @@ let increment=(id)=>{
    update(selectedItem.id);
    localStorage.setItem("data",JSON.stringify(bascket));
 }
-
 let decrement=(id)=>{
     let selectedItem=id;
     let search=bascket.find((x)=>x.id===selectedItem.id);
@@ -86,18 +84,15 @@ let decrement=(id)=>{
     bascket=bascket.filter((x)=>x.item!==0);
    localStorage.setItem("data",JSON.stringify(bascket));
 }
-
 let update=(id)=>{
     let search=bascket.find((x)=>x.id===id);
     document.getElementById(`${id}`).innerHTML=search.item;
     calculation();
 }
-
 let calculation=()=>{
      let cartAmount=document.getElementById(`cartAmount`);
      cartAmount.innerHTML=bascket.map((x)=>x.item).reduce((x,y)=>x+y,0);
 }
-
 calculation();
 
 

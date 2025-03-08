@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+i{
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+
+.navbar{
+    background-color:#283618;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 65px;
+    margin-bottom: 30px;
+}
+.cart{
+    background-color: white;
+    color: #283618;
+    padding: 15px;
+    font-size: 30px;
+    border-radius: 5px;
+    position: relative;
+}
+.cartAmount{
+    background: red;
+    color: white;
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
