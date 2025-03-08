@@ -42,3 +42,27 @@ ul{
     border-radius: 5px;
     font-size: 16px;
 }
+.text-center{
+    text-align: center;
+    button{
+        color: red;
+        padding: 10px;
+        border-radius:4px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: red;
+        color:white;
+    }
+ 
+}
+
+
+
+
+
+
+
+
+
+
